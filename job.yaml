@@ -1,0 +1,62 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: xray-demo-v1-PLACEHOLDER
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      tolerations:
+      - key: "nvidia.com/gpu"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      nodeSelector:
+        nvidia.com/gpu.product: Tesla-T4
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 2Gi
+      containers:
+      - name: train
+        image: chambie0102/chamber-xray-demo:v1
+        command: ["python", "train.py"]
+        env:
+        - name: WANDB_API_KEY
+          value: "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"
+        - name: BATCH_SIZE
+          value: "64"
+        - name: LEARNING_RATE
+          value: "0.001"
+        - name: EPOCHS
+          value: "10"
+        - name: DROPOUT
+          value: "0.0"
+        - name: USE_CLASS_WEIGHTS
+          value: "false"
+        - name: AUGMENTATION
+          value: "none"
+        - name: WARMUP_EPOCHS
+          value: "0"
+        - name: NUM_WORKERS
+          value: "2"
+        - name: WEIGHT_DECAY
+          value: "0.0"
+        - name: RUN_NAME
+          value: "v1"
+        - name: WANDB_PROJECT
+          value: "chamber-xray-demo"
+        - name: WANDB_ENTITY
+          value: "jasonong-chamberai"
+        volumeMounts:
+        - name: dshm
+          mountPath: /dev/shm
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2"
+          limits:
+            memory: "8Gi"
+            nvidia.com/gpu: 1

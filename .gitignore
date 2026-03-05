@@ -1,0 +1,7 @@
+__pycache__/
+*.pth
+*.pt
+.wandb-key
+.slack-*
+.monitor-state.json
+wandb/

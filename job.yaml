@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: xray-demo-v10-1772710561
+  name: xray-demo-v10-1772710616
 spec:
   backoffLimit: 0
   template:
@@ -51,7 +51,7 @@ spec:
         - name: UNFREEZE_ALL
           value: "true"
         - name: RUN_NAME
-          value: "xray-demo-v10-1772710561"
+          value: "xray-demo-v10-1772710616"
         - name: WANDB_PROJECT
           value: "chamber-xray-demo"
         - name: WANDB_ENTITY

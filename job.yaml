@@ -35,7 +35,7 @@ spec:
         - name: DROPOUT
           value: "0.0"
         - name: USE_CLASS_WEIGHTS
-          value: "false"
+          value: "true"
         - name: AUGMENTATION
           value: "none"
         - name: WARMUP_EPOCHS

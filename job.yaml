@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: xray-demo-v10-1772710616
+  name: xray-demo-v11-1772710907
 spec:
   backoffLimit: 0
   template:
@@ -21,7 +21,7 @@ spec:
           sizeLimit: 2Gi
       containers:
       - name: train
-        image: chambie0102/chamber-xray-demo:v10
+        image: chambie0102/chamber-xray-demo:v11
         command: ["python", "train.py"]
         env:
         - name: WANDB_API_KEY
@@ -51,7 +51,7 @@ spec:
         - name: UNFREEZE_ALL
           value: "true"
         - name: RUN_NAME
-          value: "xray-demo-v10-1772710616"
+          value: "xray-demo-v11-1772710907"
         - name: WANDB_PROJECT
           value: "chamber-xray-demo"
         - name: WANDB_ENTITY

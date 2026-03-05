@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: xray-demo-v8-1772707574
+  name: xray-demo-v9-1772708193
 spec:
   backoffLimit: 0
   template:
@@ -21,7 +21,7 @@ spec:
           sizeLimit: 2Gi
       containers:
       - name: train
-        image: chambie0102/chamber-xray-demo:v8
+        image: chambie0102/chamber-xray-demo:v10
         command: ["python", "train.py"]
         env:
         - name: WANDB_API_KEY
@@ -31,11 +31,11 @@ spec:
         - name: LEARNING_RATE
           value: "0.0005"
         - name: EPOCHS
-          value: "25"
+          value: "20"
         - name: DROPOUT
-          value: "0.0"
+          value: "0.4"
         - name: USE_CLASS_WEIGHTS
-          value: "false"
+          value: "true"
         - name: AUGMENTATION
           value: "none"
         - name: WARMUP_EPOCHS
@@ -43,9 +43,9 @@ spec:
         - name: NUM_WORKERS
           value: "2"
         - name: WEIGHT_DECAY
-          value: "0.0"
+          value: "0.001"
         - name: RUN_NAME
-          value: "xray-demo-v8-1772707574"
+          value: "xray-demo-v9-1772708193"
         - name: WANDB_PROJECT
           value: "chamber-xray-demo"
         - name: WANDB_ENTITY

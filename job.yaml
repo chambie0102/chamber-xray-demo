@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: xray-demo-v9-1772708193
+  name: xray-demo-v10-1772710561
 spec:
   backoffLimit: 0
   template:
@@ -29,23 +29,29 @@ spec:
         - name: BATCH_SIZE
           value: "32"
         - name: LEARNING_RATE
-          value: "0.0005"
+          value: "0.0001"
+        - name: HEAD_LR_MULT
+          value: "10.0"
         - name: EPOCHS
-          value: "20"
+          value: "12"
         - name: DROPOUT
-          value: "0.4"
-        - name: USE_CLASS_WEIGHTS
+          value: "0.3"
+        - name: NORMAL_WEIGHT
+          value: "3.0"
+        - name: USE_SAMPLER
           value: "true"
         - name: AUGMENTATION
-          value: "none"
+          value: "medical"
         - name: WARMUP_EPOCHS
-          value: "1"
+          value: "2"
         - name: NUM_WORKERS
           value: "2"
         - name: WEIGHT_DECAY
-          value: "0.001"
+          value: "0.01"
+        - name: UNFREEZE_ALL
+          value: "true"
         - name: RUN_NAME
-          value: "xray-demo-v9-1772708193"
+          value: "xray-demo-v10-1772710561"
         - name: WANDB_PROJECT
           value: "chamber-xray-demo"
         - name: WANDB_ENTITY

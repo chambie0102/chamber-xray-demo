@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: xray-demo-v6-1741336241
+  name: xray-demo-v5-1772705574
 spec:
   backoffLimit: 0
   template:
@@ -45,7 +45,7 @@ spec:
         - name: WEIGHT_DECAY
           value: "0.01"
         - name: RUN_NAME
-          value: "xray-demo-v6-1741336241"
+          value: "xray-demo-v5-1772705574"
         - name: WANDB_PROJECT
           value: "chamber-xray-demo"
         - name: WANDB_ENTITY

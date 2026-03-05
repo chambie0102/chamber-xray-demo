@@ -31,6 +31,7 @@ WEIGHT_DECAY = float(os.environ.get("WEIGHT_DECAY", "0.0"))
 WANDB_PROJECT = os.environ.get("WANDB_PROJECT", "chamber-xray-demo")
 WANDB_ENTITY = os.environ.get("WANDB_ENTITY", "jasonong-chamberai")
 RUN_NAME = os.environ.get("RUN_NAME", f"xray-v{int(time.time())}")
+SKIP_RGB_CONVERT = os.environ.get("SKIP_RGB_CONVERT", "false").lower() == "true"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
@@ -95,7 +96,7 @@ class XRayDataset(torch.utils.data.Dataset):
 
         if not isinstance(image, Image.Image):
             image = Image.fromarray(image)
-        if image.mode != "RGB":
+        if not SKIP_RGB_CONVERT and image.mode != "RGB":
             image = image.convert("RGB")
 
         if self.transform:

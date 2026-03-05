@@ -1,0 +1,10 @@
+FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
+
+WORKDIR /app
+
+# Install all dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Pre-download ViT-B/16 weights so training doesn't waste GPU time on downloads
+RUN python -c "import torchvision; torchvision.models.vit_b_16(weights=torchvision.models.ViT_B_16_Weights.IMAGENET1K_V1)"

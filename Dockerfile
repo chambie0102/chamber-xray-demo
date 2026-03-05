@@ -1,12 +1,8 @@
-FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
+FROM chambie0102/chamber-xray-base:latest
 
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy training script
+# Only copy training script — deps + weights already in base
 COPY train.py .
 
 CMD ["python", "train.py"]
